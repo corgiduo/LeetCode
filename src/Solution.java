@@ -564,14 +564,14 @@ public class Solution {
     //459. 重复的子字符串
     public boolean repeatedSubstringPattern(String s) {
         String str = s + s;
-        return str.substring(1,     str.length() - 1).contains(s);
+        return str.substring(1, str.length() - 1).contains(s);
     }
 
     //406. 根据身高重建队列
     public int[][] reconstructQueue(int[][] people) {
         Arrays.sort(people, (o1, o2) -> (o1[0] == o2[0] ? o1[1] - o2[1] : o2[0] - o1[0]));
         List<int[]> list = new LinkedList<>();
-        for (int[] i: people) {
+        for (int[] i : people) {
             list.add(i[1], i);
         }
         return list.toArray(new int[list.size()][]);
@@ -679,7 +679,7 @@ public class Solution {
     public int findPoisonedDuration(int[] timeSeries, int duration) {
         if (timeSeries.length == 0) return 0;
         if (timeSeries.length == 1) return duration;
-        int start =  timeSeries[0], sum = duration;
+        int start = timeSeries[0], sum = duration;
         for (int i = 1; i < timeSeries.length; i++) {
             if (timeSeries[i] < start + duration) {
                 sum += timeSeries[i] - start;
@@ -702,6 +702,7 @@ public class Solution {
 
     //1038. 从二叉搜索树到更大和树
     int sum = 0;
+
     public TreeNode bstToGst(TreeNode root) {
         if (root != null) {
             bstToGst(root.right);
@@ -810,7 +811,7 @@ public class Solution {
                 if (y + 1 < col && board[x + 1][y + 1] == 'M') count++;
             }
             if (count != 0) {
-                board[x][y] = (char)('0' + count);
+                board[x][y] = (char) ('0' + count);
                 return board;
             }
             board[x][y] = 'B';
@@ -880,7 +881,7 @@ public class Solution {
         }
         int index = 0;
         while (cnt[maxIndex]-- > 0) {
-            ret[index] = (char)(maxIndex + 'a');
+            ret[index] = (char) (maxIndex + 'a');
             index += 2;
         }
         for (int i = 0; i < 26; i++) {
@@ -888,7 +889,7 @@ public class Solution {
                 if (index >= len) {
                     index = 1;
                 }
-                ret[index] = (char)(index + 'a');
+                ret[index] = (char) (index + 'a');
                 index += 2;
             }
         }
@@ -1012,7 +1013,7 @@ public class Solution {
 
     //455. 分发饼干
     public int findContentChildren(int[] g, int[] s) {
-        int[] g1 = (int[])g.clone(), s1 = (int[])s.clone();
+        int[] g1 = (int[]) g.clone(), s1 = (int[]) s.clone();
         Arrays.sort(g1);
         Arrays.sort(s1);
         int len1 = g1.length, len2 = s1.length;
@@ -1296,6 +1297,22 @@ public class Solution {
         }
         Collections.sort(list);
         return list.get(row * col - k);
+    }
+
+    //1893. 检查是否区域内所有整数都被覆盖
+    public boolean isCovered(int[][] ranges, int left, int right) {
+        boolean flags[] = new boolean[51];
+        for (int[] range : ranges) {
+            for (int i = range[0]; i <= range[1]; i++) {
+                flags[i] = true;
+            }
+        }
+        for (int i = left; i <= right; i++) {
+            if (!flags[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
